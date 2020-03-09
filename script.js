@@ -1,7 +1,6 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-
 // length of password
 var length = prompt("Please choose a length for your password between 8 and 128 characters.");
 // confirm whether to include uppercase
@@ -11,7 +10,7 @@ var numbers = confirm("Should the password contain numbers?");
 // confirm whether to include symbols
 var symbols = confirm("Should the password contain any symbols?");
 
-var password = document.getElementById('#password');
+
 
 // split will create an array of all of the characters listed
 var lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz'.split('');
@@ -19,16 +18,19 @@ var upperCaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 var allNumbers = '0123456789'.split('');
 var allSymbols = '!"#$%&()*+,-./:;=>?@[]^_`{|}~'.split('');
 
-generateBtn.addEventListener("click", function(event) {
+console.log(allSymbols)
+
+generateBtn.addEventListener("click", function() {
   event.preventDefault();
   var passwordLength = parseInt(length);
   var includeUppercase = (uppercase);
   var includeNumbers = (numbers);
   var includeSymbols = (symbols);
-  // declaring a password variable calling on the above elements
+  // declaring a password variable calling on the above elements - not used right now
   var password = generatePassword(passwordLength, includeUppercase, includeNumbers, includeSymbols);
-  password.value = password
 })
+
+// somewhere need to create an array of all the characters and (maybe loop) so that the numbers or symbols array is added on if true
 
 function generatePassword(passwordLength, includeUppercase, includeNumbers, includeSymbols) {
   // sets the password character to default to just lowercase letters
@@ -47,7 +49,8 @@ function generatePassword(passwordLength, includeUppercase, includeNumbers, incl
   passwordCharacters.push(letterIndex)
   }
   // as the function loops through this will join all of the characters in a string
-  return passwordCharacters.join('')
+  return passwordCharacters.join('');
+  
 
 }
 
@@ -59,14 +62,14 @@ function generatePassword(passwordLength, includeUppercase, includeNumbers, incl
 
 
 
-// // Write password to the #password input
-// function writePassword() {
-//   var password = generatePassword();
-//   var passwordText = document.querySelector("#password");
+// Write password to the #password input
+function writePassword() {
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
 
-//   passwordText.value = password;
+  passwordText.value = password;
 
-// }
+}
 
-// // Add event listener to generate button
-// generateBtn.addEventListener("click", writePassword);
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
