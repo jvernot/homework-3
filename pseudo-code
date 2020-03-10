@@ -1,12 +1,13 @@
 - A user will click the generate password button and this will need to trigger prompts
 - A prompt will ask the desired length of password between 8 - 128 characters
+    - This will be validated and rejected if it is less than 8 or more than 128 characters
 - A prompt will ask whether to include uppercase, lowercase, numbers, and special characters
-    - users answers to each prompt are stored as variable
-- These variables will be used to create if statements
-- Generate random numbers/letters based on criteria
-- Use a for loop to have it generate numbers the proper amount of times
-- Concatenate the different strings of random letters and numbers 
-- Scramble the string
+    - They need to choose at least one of these or start over
+- The answers to each prompt should be stored as a variable
+- There will be variables for all of the different letter/symbol choices that we will pull from
+- Depending on answers to the prompt, we will either add or leave off numbers, symbols, etc.
+- Use a for loop and generate random numbers to index our large array and pick out charcters for the password.
+- Dislpay the password in the box
 
 
 
@@ -15,19 +16,3 @@
 
 
 
-
-GIVEN I need a new, secure password
-WHEN I click the button to generate a password
-THEN I am presented with a series of prompts for password criteria
-WHEN prompted for password criteria
-THEN I select which criteria to include in the password
-WHEN prompted for the length of the password
-THEN I choose a length of at least 8 characters and no more than 128 characters
-WHEN prompted for character types to include in the password
-THEN I choose lowercase, uppercase, numeric, and/or special characters
-WHEN I answer each prompt
-THEN my input should be validated and at least one character type should be selected
-WHEN all prompts are answered
-THEN a password is generated that matches the selected criteria
-WHEN the password is generated
-THEN the password is either displayed in an alert or written to the page
