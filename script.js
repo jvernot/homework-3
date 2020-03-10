@@ -1,15 +1,6 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-// length of password
-var length = prompt("Please choose a length for your password between 8 and 128 characters.");
-// confirm whether to include uppercase
-var uppercase = confirm("Should the password contain uppercase letters?");
-// confirm whther to include numbers
-var numbers = confirm("Should the password contain numbers?");
-// confirm whether to include symbols
-var symbols = confirm("Should the password contain any symbols?");
-
 
 
 // split will create an array of all of the characters listed
@@ -18,58 +9,43 @@ var upperCaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 var allNumbers = '0123456789'.split('');
 var allSymbols = '!"#$%&()*+,-./:;=>?@[]^_`{|}~'.split('');
 
-console.log(allSymbols)
-
 generateBtn.addEventListener("click", function() {
-  event.preventDefault();
+  // length of password -- changed from a string to an integer
+  var length = parseInt(prompt("Please choose a length for your password between 8 and 128 characters."));
+  // setting conditons so that the password is not less than 8 or longer than 128 characters
+  if (length < 8 || length > 128) {
+    alert("Nope! Please pick a length between 8 and 128 characters.")
+    location.reload();
+  } else {
+    // confirm whether to include uppercase
+  var uppercase = confirm("Should the password contain uppercase letters?");
+  // confirm whther to include numbers
+  var numbers = confirm("Should the password contain numbers?");
+  // confirm whether to include symbols
+  var symbols = confirm("Should the password contain any symbols?");
+  }
+  
+
   var passwordLength = parseInt(length);
   var includeUppercase = (uppercase);
+  console.log(includeUppercase);
   var includeNumbers = (numbers);
   var includeSymbols = (symbols);
-  // declaring a password variable calling on the above elements - not used right now
-  var password = generatePassword(passwordLength, includeUppercase, includeNumbers, includeSymbols);
+  
 })
 
-// somewhere need to create an array of all the characters and (maybe loop) so that the numbers or symbols array is added on if true
-
-function generatePassword(passwordLength, includeUppercase, includeNumbers, includeSymbols) {
-  // sets the password character to default to just lowercase letters
-  var characters = lowerCaseLetters;
-  // if other conditions are met their available characters are added to the variable
-  if (includeUppercase) characters = characters.concat(upperCaseLetters)
-  if (includeNumbers) characters = characters.concat(allNumbers)
-  if (includeSymbols) characters = characters.concat(allSymbols)
-
-  // loops through all of the possible characters until it meets the length specified
-  var passwordCharacters = [];
-  for (var i = 0; i < length; i++) {
-  
-  var letterIndex = characters[Math.floor(Math.random * passwordLength)]
-  // .push adds the randomly generated letter from the index above to the passwordCharacters array
-  passwordCharacters.push(letterIndex)
-  }
-  // as the function loops through this will join all of the characters in a string
-  return passwordCharacters.join('');
-  
-
-}
 
 
 
 
+// // Write password to the #password input
+// function writePassword() {
+//   var password = generatePassword();
+//   var passwordText = document.querySelector("#password");
 
+//   passwordText.value = password;
 
+// }
 
-
-
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
-}
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+// // Add event listener to generate button
+// generateBtn.addEventListener("click", writePassword);
