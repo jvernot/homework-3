@@ -1,38 +1,67 @@
-// Assignment Code
-var generateBtn = document.querySelector("#generate");
 
 
+//variables containing all of our possible characters
+var lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz';
+var upperCaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+var allNumbers = '0123456789';
+var allSymbols = '!"#$%&()*+,-./:;=>?@[]^_`{|}~';
 
-// split will create an array of all of the characters listed
-var lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz'.split('');
-var upperCaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-var allNumbers = '0123456789'.split('');
-var allSymbols = '!"#$%&()*+,-./:;=>?@[]^_`{|}~'.split('');
+// length of password -- changed from a string to an integer
+var length = parseInt(prompt("Please choose a length for your password between 8 and 128 characters."));
+// setting conditons so that the password is not less than 8 or longer than 128 characters
+if (length < 8 || length > 128) {
+  alert("Nope! Please pick a length between 8 and 128 characters.")
+  location.reload();
+} else {
+// confirm whether to include lowercase
+var includeLowercase = confirm("Should the password contain lowercase letters?");
+// confirm whether to include uppercase
+var includeUppercase = confirm("Should the password contain uppercase letters?");
+// confirm whther to include numbers
+var includeNumbers = confirm("Should the password contain numbers?");
+// confirm whether to include symbols
+var includeSymbols = confirm("Should the password contain any symbols?");
 
-generateBtn.addEventListener("click", function() {
-  // length of password -- changed from a string to an integer
-  var length = parseInt(prompt("Please choose a length for your password between 8 and 128 characters."));
-  // setting conditons so that the password is not less than 8 or longer than 128 characters
-  if (length < 8 || length > 128) {
-    alert("Nope! Please pick a length between 8 and 128 characters.")
+// creating a variable to hold the characters for our password
+var characters = "";
+}
+
+function generatePassword() {
+  //check to see if our critera are met and incldue them in the characters variable if they are
+  if (includeLowercase) {
+    characters += lowerCaseLetters;
+  }
+  if (includeUppercase) {
+    characters += upperCaseLetters;
+  }
+  if (includeNumbers) {
+    characters += allNumbers;
+  }
+  if (includeSymbols) {
+    characters += allSymbols
+  }
+  if (characters === "") {
+    alert("This wouldn't be a very secure password! Select at least one criteria.")
     location.reload();
-  } else {
-    // confirm whether to include uppercase
-  var uppercase = confirm("Should the password contain uppercase letters?");
-  // confirm whther to include numbers
-  var numbers = confirm("Should the password contain numbers?");
-  // confirm whether to include symbols
-  var symbols = confirm("Should the password contain any symbols?");
+  }
+  // where we will store the characters for the password
+  var password = "";
+
+  for (var i = 0; i < length; i++) {
+    password += characters[Math.floor(Math.random() * characters.length)];
   }
   
+  document.getElementById("password").value = password
 
-  var passwordLength = parseInt(length);
-  var includeUppercase = (uppercase);
-  console.log(includeUppercase);
-  var includeNumbers = (numbers);
-  var includeSymbols = (symbols);
-  
-})
+}
+
+// Assignment Code
+var generateBtn = document.querySelector("#generate");
+// Add event listener to generate button
+generateBtn.addEventListener("click", generatePassword);
+
+generatePassword();
+
 
 
 
@@ -47,5 +76,3 @@ generateBtn.addEventListener("click", function() {
 
 // }
 
-// // Add event listener to generate button
-// generateBtn.addEventListener("click", writePassword);
